@@ -14,3 +14,6 @@ jobs:
 
     - name: Build Docker image
       run: docker build -t my-python-app .
+    - name: Send notification to Gotify
+      run: |
+        curl "https://random-name.trycloudflare.com/message?token=A0Sur_SlG8RkBw4" -F "title=CI/CD" -F "message=Сборка завершена"
