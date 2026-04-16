@@ -23,6 +23,6 @@ jobs:
 
     - name: 📡 Отправка уведомления в Gotify
       run: |
-        curl "https://ТВОЙ_АДРЕС.trycloudflare.com/message?token=A0Sur_SlG8RkBw4" \
+        curl "https://anchor-applied-kyle-residential.trycloudflare.com/message?token=A0Sur_SlG8RkBw4" \
         -F "title=CI/CD" \
         -F "message=Сборка и запуск выполнены успешно"
