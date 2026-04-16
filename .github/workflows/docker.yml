@@ -1,19 +1,28 @@
-name: Docker CI
+name: Docker CI/CD
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: 📥 Клонирование репозитория
       uses: actions/checkout@v3
 
-    - name: Build Docker image
+    - name: 🐳 Сборка Docker-образа
       run: docker build -t my-python-app .
-    - name: Send notification to Gotify
+
+    - name: 🚀 Запуск контейнера
+      run: docker run -d -p 5000:5000 my-python-app
+
+    - name: 🔍 Проверка контейнеров
+      run: docker ps
+
+    - name: 📡 Отправка уведомления в Gotify
       run: |
-        curl "https://random-name.trycloudflare.com/message?token=A0Sur_SlG8RkBw4" -F "title=CI/CD" -F "message=Сборка завершена"
+        curl "https://ТВОЙ_АДРЕС.trycloudflare.com/message?token=A0Sur_SlG8RkBw4" \
+        -F "title=CI/CD" \
+        -F "message=Сборка и запуск выполнены успешно"
